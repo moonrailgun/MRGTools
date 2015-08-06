@@ -52,11 +52,6 @@ namespace MRGTools
         }
 
         #region 托盘相关
-        private void InitializeNotifyIconItems()
-        {
-
-        }
-
         /// <summary>
         /// 当气泡被点击
         /// </summary>
@@ -91,6 +86,35 @@ namespace MRGTools
         private void OnShowToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.OnNotifyIconDoubleClicked(null, null);
+        }
+        #endregion
+
+        #region 输入相关
+        private TextBox currentInputTextBox;
+
+        private void InputConfirm(object sender, EventArgs e)
+        {
+            if (currentInputTextBox != null)
+            {
+                this.layeredLabel1.Text = this.currentInputTextBox.Text;
+                this.currentInputTextBox.Visible = false;
+                this.currentInputTextBox.Dispose();
+            }
+        }
+
+        private void OnLabelDoubleClick(object sender, EventArgs e)
+        {
+            this.currentInputTextBox = new TextBox();
+            this.currentInputTextBox.Name = "currentInputTextBox";
+            this.currentInputTextBox.Location = this.layeredLabel1.Location;
+            this.currentInputTextBox.Size = this.layeredLabel1.Size;
+            this.currentInputTextBox.TabIndex = 5;
+            this.currentInputTextBox.TabStop = false;
+            this.Controls.Add(this.currentInputTextBox);
+
+            this.currentInputTextBox.Text = this.layeredLabel1.Text;
+            this.currentInputTextBox.Visible = true;
+            this.currentInputTextBox.Focus();
         }
         #endregion
     }
