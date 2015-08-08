@@ -21,7 +21,6 @@ namespace MRGTools
 
         private void Initialize()
         {
-
         }
 
         private void CloseWindow(object sender, EventArgs e)
